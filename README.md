@@ -77,7 +77,7 @@ http://localhost:3000/produto
 <summary><b>Exemplo de Requisição json</b></summary>
 <br>
  
-OBS: Utilizar a requisição multipart/form-data.
+> OBS: Utilizar a requisição multipart/form-data.
 
 ```javascript
 {
