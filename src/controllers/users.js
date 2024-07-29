@@ -27,9 +27,9 @@ const cadastarUsuarios = async (req, res) => {
     return res.status(200).json(usuario);
   } catch (error) {
     return res.status(500).json({
-      mensagem: "Erro interno do servidor",
+      mensagem: "Erro interno do servidor", 
     });
-  }
+  }  
 };
 
 const detalharPerfilUsuario = async (req, res) => {
@@ -69,5 +69,5 @@ const atualizarPerfilUsuario = async (req, res) => {
 module.exports = {
   cadastarUsuarios,
   detalharPerfilUsuario,
-  atualizarPerfilUsuario,
+  atualizarPerfilUsuario,  
 };

@@ -30,4 +30,4 @@ const usuarioLogin = async (req, res) => {
     }
   }
 
-module.exports = usuarioLogin
+module.exports = usuarioLogin 

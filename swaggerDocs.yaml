@@ -1,0 +1,254 @@
+paths:
+  /categoria:
+    get:
+      tags:
+        - Categorias
+      summary: Listar Categorias
+      description: >
+        Essa é a rota que será chamada quando o usuário quiser listar todas as categorias cadastradas.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID da categoria
+                    example: 123
+                  name:
+                    type: string
+                    description: Nome da categoria
+                    example: Informática
+        '500':
+          description: Internal Server Error
+  /login:
+    post:
+      tags:
+        - Login
+      summary: Login
+      description: >  
+        Essa é a rota que permite o usuário cadastrado realizar o login no sistema. 
+      responses:
+        '200':
+          description: Ok
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Email do Usuario
+                  example: João@email.com
+                senha:
+                  type: string
+                  format: password
+                  description: Senha do Usuario
+                  example: S3cur3P@ssw0rd
+              required:
+                - nome
+                - email
+                - senha
+        '500':
+          description: Internal Server Error
+  /usuario:
+    post:
+      tags:
+        - Usuario
+      summary: Cadastrar Usuario
+      description: >
+        Essa é a rota que será utilizada para cadastrar um novo usuário no sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: Nome do Usuario
+                  example: João Moreira
+                email:
+                  type: string
+                  description: Email
+                  example: João@email.com
+                senha:
+                  type: string
+                  format: password
+                  description: Senha do Usuario
+                  example: S3cur3P@ssw0rd
+              required:
+                - nome
+                - email
+                - senha
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Internal Server Error
+    get:
+      tags:
+        - Usuario
+      summary: Detalhar Perfil Usuario
+      description: >
+        Essa é a rota que permite o usuário logado a visualizar os dados do seu próprio perfil, de acordo com a validação do token de autenticação.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Ok
+    put: 
+      tags:
+        - Usuario
+      summary: Atualizar Usuario
+      description: >
+       Essa é a rota que permite o usuário logado atualizar informações de seu próprio cadastro, de acordo com a validação do token de autenticação.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: Nome do Usuario
+                  example: João Moreira
+                email:
+                  type: string
+                  description: Email
+                  example: JoãoAtualizado@email.com
+                senha:
+                  type: string
+                  format: password
+                  description: Senha do Usuario
+                  example: S3cur3P@ssw0rd
+              required:
+                - nome
+                - email
+                - senha
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Internal Server Error
+  /produto:
+    post:
+      tags: 
+        - Produto
+      summary: Cadastrar Produto
+      description: >
+        Essa é a rota que permite o usuário logado cadastrar um novo produto no sistema.
+      security:
+        - bearerAuth: []
+    get:
+      tags: 
+        - Produto
+      summary: Listar Produtos
+      description: >
+       Essa é a rota que será chamada quando o usuário logado quiser listar todos os produtos cadastrados.
+      security:
+        - bearerAuth: []
+  /produto/{id}:
+    get:
+      tags: 
+        - Produto
+      summary: Detalhar Produto
+      description: >
+         Essa é a rota que permite o usuário logado obter um de seus produtos cadastrados.
+      security:
+        - bearerAuth: []
+    put:
+      tags: 
+        - Produto
+      summary: Editar Produto
+      description: >
+        Essa é a rota que permite o usuário logado a atualizar as informações de um produto cadastrado.
+      security:
+        - bearerAuth: []
+    delete:
+      tags: 
+        - Produto
+      summary: Deletar Produto
+      description: >
+        Essa é a rota que será chamada quando o usuário logado quiser excluir um de seus produtos cadastrados.
+      security:
+        - bearerAuth: []
+  /cliente:
+    post:
+      tags: 
+        - Cliente
+      summary: Cadastrar Cliente
+      description: >
+        Essa é a rota que permite usuário logado cadastrar um novo cliente no sistema.
+      security:
+        - bearerAuth: []
+    get:
+      tags: 
+        - Cliente
+      summary: Listar Clientes
+      description: >
+       Essa é a rota que será chamada quando o usuário logado quiser listar todos os clientes cadastrados.
+      security:
+        - bearerAuth: []
+  /cliente/{id}:
+    get:
+      tags: 
+        - Cliente
+      summary: Detalhar Cliente
+      description: >
+         Essa é a rota que será chamada quando o usuário logado quiser obter um de seus clientes cadastrados.
+      security:
+        - bearerAuth: []
+    put:
+      tags: 
+        - Cliente
+      summary: Atualizar Cliente
+      description: >
+         Essa é a rota que permite o usuário realizar atualização de um cliente cadastrado.
+      security:
+        - bearerAuth: []
+  /pedido:
+    post:
+      tags: 
+        - Pedido
+      summary: Cadastrar Pedido
+      description: >
+        Essa é a rota que será utilizada para cadastrar um novo pedido no sistema.
+      security:
+        - bearerAuth: []
+    get:
+      tags: 
+        - Pedido
+      summary: Listar Pedidos
+      description: >
+       Essa é a rota que será chamada quando o usuário logado quiser listar todos os pedidos cadastrados.
+      security:
+        - bearerAuth: []
+  /pedido/{id}:
+    get:
+      tags: 
+        - Pedido
+      summary: Listar Pedidos Cliente
+      description: >
+       Essa é a rota que será chamada quando o usuário logado quiser listar todos os pedidos de um cliente específico.
+      security:
+        - bearerAuth: []
+
+
+
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT          

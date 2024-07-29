@@ -47,4 +47,4 @@ routes.post("/pedido", cadastrarPedido)
 routes.get("/pedido", listarPedidos);
 routes.get("/pedido/:id", listarPedidosId);
 
-module.exports = routes;
+module.exports = routes; 
