@@ -95,7 +95,7 @@ http://localhost:3000/produto
 ```shell
 http://localhost:3000/cliente
 ```
-`POST` _Essa é a rota que permite usuário logado cadastrar um novo cliente no sistema.._ <br>
+`POST` _Essa é a rota que permite usuário logado cadastrar um novo cliente no sistema._ <br>
 `PUT` `/produto/:id` _Essa é a rota que permite o usuário realizar atualização de um cliente cadastrado._<br>
 `GET` _Essa é a rota que será chamada quando o usuário logado quiser listar todos os clientes cadastrados._<br>
 `GET` `/produto/:id` _Essa é a rota que será chamada quando o usuário logado quiser obter um de seus clientes cadastrados._<br>
@@ -125,6 +125,7 @@ http://localhost:3000/pedido
 ```
 `POST` _Essa é a rota que será utilizada para cadastrar um novo pedido no sistema._ <br>
 `GET` _Essa é a rota que será chamada quando o usuário logado quiser listar todos os pedidos cadastrados._<br>
+`GET` `/pedido/:id` _Essa é a rota que será chamada quando o usuário logado quiser listar todos os pedidos de um cliente específico._<br>
 <details>
 <summary><b>Exemplo de Requisição json</b></summary>
 <br>
