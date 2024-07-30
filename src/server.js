@@ -5,7 +5,6 @@ const swaggerDocs = require('../swaggerConfig');
 
 const app = express();
 
-app.use(cors());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(express.json());
 app.use(routes);
