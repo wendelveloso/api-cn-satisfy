@@ -1,6 +1,8 @@
 # API | Cliente&Negócio Satisfy
 
-Uma API RESTful de um Sistema PDV (frente de caixa) para otimização das operações de venda, facilitando o processo de pagamento e gerenciamento do estoque, além de registro de vendas e controle dos clientes.
+Uma API RESTful de um Sistema PDV (frente de caixa) para otimização das operações de venda, facilitando o processo de pagamento e gerenciamento do estoque, além de registro de vendas e controle dos clientes e envio de email para pedidos realizados.<br>
+> **[Real-Time Testing](https://api-cn-satisfy.onrender.com/api-docs/#/)**
+
 
 <br>
 <img align=center src="banner-repository-c&n-satisfy2.png">
