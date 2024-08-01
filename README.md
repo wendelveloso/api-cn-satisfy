@@ -132,12 +132,15 @@ http://localhost:3000/pedido
 ```
 `POST` _Essa é a rota que será utilizada para cadastrar um novo pedido no sistema._ <br>
 `GET` _Essa é a rota que será chamada quando o usuário logado quiser listar todos os pedidos cadastrados._<br>
-`GET` `/pedido/:id` _Essa é a rota que será chamada quando o usuário logado quiser listar todos os pedidos de um cliente específico._<br>
 <details>
 <summary><b>Exemplo de Requisição json</b></summary>
 <br>
  
 ```javascript
+
+//GET /pedido?cliente__id=1
+// Caso seja informado o parâmetro do tipo query `cliente__id`, será listado apenas os pedidos do cliente específico.
+
 {
     "cliente_id": 1,
     "observacao": "Em caso de ausência recomendo deixar com algum vizinho",
