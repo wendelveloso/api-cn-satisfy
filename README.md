@@ -82,6 +82,11 @@ http://localhost:3000/produto
 > OBS: Utilizar a requisição multipart/form-data.
 
 ```javascript
+// GET /produto?categoria_id=1
+// Filtrar os produto por categoria, caso seja informado o parâmetro do tipo query categoria_id.
+
+
+// POST /produto
 {
  "descricao": "Placa de Video NV RTX4060TI 8GB",
  "quantidade_estoque": 15,
