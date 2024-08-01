@@ -23,7 +23,7 @@ const schemaClient = joi.object({
       "any.required": "O campo cpf é obrigatorio",
     }),
 
-    cep: joi.string().length(8).messages({
+    cep: joi.string().length(7).messages({
       "string.length": "O CEP precisa conter 8 caracteres"
     }),
     rua: joi.string(),

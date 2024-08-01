@@ -18,7 +18,7 @@ paths:
                     type: integer
                     description: ID da categoria
                     example: 123
-                  name:
+                  nome:
                     type: string
                     description: Nome da categoria
                     example: Informática
@@ -103,12 +103,29 @@ paths:
       responses:
         '200':
           description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID do Usuario
+                    example: 1
+                  nome:
+                    type: string
+                    description: Nome do Usuario
+                    example: João Moreira
+                  name:
+                    type: string
+                    description: Email do Usuario
+                    example: João@email.com
     put: 
       tags:
         - Usuario
       summary: Atualizar Usuario
       description: >
-       Essa é a rota que permite o usuário logado atualizar informações de seu próprio cadastro, de acordo com a validação do token de autenticação.
+        Essa é a rota que permite o usuário logado atualizar informações de seu próprio cadastro, de acordo com a validação do token de autenticação.
       security:
         - bearerAuth: []
       requestBody:
@@ -149,23 +166,148 @@ paths:
         Essa é a rota que permite o usuário logado cadastrar um novo produto no sistema.
       security:
         - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+                  description: Descrição do produto.
+                  example: Placa de Video NV RTX4060TI 8GB
+                quantidade_estoque:
+                  type: string
+                  description: Quantidade do produto no estoque.
+                  example: 15
+                valor:
+                  type: string
+                  description: Valor do produto.
+                  example: 267500
+                categoria_id:
+                  type: string
+                  description: ID de categoria do produto.
+                  example: 1
+                produto_imagem:
+                  type: string
+                  format: binary
+                  description: Arquivo de imagem do produto.
+      responses:
+        '201':
+          description: Created
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1
+                  descricao:
+                    type: string
+                    example: Placa de Video NV RTX4060TI 8GB
+                  quantidade_estoque:
+                    type: string
+                    example: 15
+                  valor:
+                    type: string
+                    example: 267500
+                  categoria_id:
+                    type: string
+                    example: 1
+                  produto_imagem:
+                    type: string
+                    example: URL/[imgName].jpg
+        '500':
+          description: Internal Server Error
     get:
       tags: 
         - Produto
       summary: Listar Produtos
-      description: >
-       Essa é a rota que será chamada quando o usuário logado quiser listar todos os produtos cadastrados.
+      description: |
+        Essa é a rota que será chamada quando o usuário logado quiser listar todos os produtos cadastrados.
+        Filtrar os produto por categoria, caso seja informado o parâmetro do tipo query `categoria_id`
       security:
         - bearerAuth: []
+      parameters:
+        - name: categoria_id
+          in: query
+          description: ID do produto que deve ser retornado
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1
+                  descricao:
+                    type: string
+                    example: Placa de Video NV RTX4060TI 8GB
+                  quantidade_estoque:
+                    type: string
+                    example: 15
+                  valor:
+                    type: string
+                    example: 267500
+                  categoria_id:
+                    type: string
+                    example: 1
+                  produto_imagem:
+                    type: string
+                    example: URL/[imgName].jpg
   /produto/{id}:
     get:
       tags: 
         - Produto
       summary: Detalhar Produto
       description: >
-         Essa é a rota que permite o usuário logado obter um de seus produtos cadastrados.
+        Essa é a rota que permite o usuário logado obter um de seus produtos cadastrados.
       security:
         - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do produto que deve ser retornado
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Detalhes do produto
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1
+                  descricao:
+                    type: string
+                    example: Placa de Video NV RTX4060TI 8GB
+                  quantidade_estoque:
+                    type: string
+                    example: 15
+                  valor:
+                    type: string
+                    example: 267500
+                  categoria_id:
+                    type: string
+                    example: 1
+                  produto_imagem:
+                    type: string
+                    example: URL/[imgName].jpg
+        '500':
+          description: Internal Server Error
     put:
       tags: 
         - Produto
@@ -174,6 +316,68 @@ paths:
         Essa é a rota que permite o usuário logado a atualizar as informações de um produto cadastrado.
       security:
         - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do produto que deve ser editado
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+                  description: Descrição do produto.
+                  example: Placa de Video NV RTX4060TI 8GB
+                quantidade_estoque:
+                  type: string
+                  description: Quantidade do produto no estoque.
+                  example: 5
+                valor:
+                  type: string
+                  description: Valor do produto.
+                  example: 267500
+                categoria_id:
+                  type: string
+                  description: ID de categoria do produto.
+                  example: 1
+                produto_imagem:
+                  type: string
+                  format: binary
+                  description: Arquivo de imagem do produto.
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1
+                  descricao:
+                    type: string
+                    example: Placa de Video NV RTX4060TI 8GB
+                  quantidade_estoque:
+                    type: string
+                    example: 5
+                  valor:
+                    type: string
+                    example: 267500
+                  categoria_id:
+                    type: string
+                    example: 1
+                  produto_imagem:
+                    type: string
+                    example: URL/[imgName].jpg
+        '500':
+          description: Internal Server Error  
     delete:
       tags: 
         - Produto
@@ -182,6 +386,42 @@ paths:
         Essa é a rota que será chamada quando o usuário logado quiser excluir um de seus produtos cadastrados.
       security:
         - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do produto que deve ser excluído
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1
+                  descricao:
+                    type: string
+                    example: Placa de Video NV RTX4060TI 8GB
+                  quantidade_estoque:
+                    type: string
+                    example: 5
+                  valor:
+                    type: string
+                    example: 267500
+                  categoria_id:
+                    type: string
+                    example: 1
+                  produto_imagem:
+                    type: string
+                    example: URL/[imgName].jpg
+        '500':
+          description: Internal Server Error  
   /cliente:
     post:
       tags: 
@@ -191,31 +431,233 @@ paths:
         Essa é a rota que permite usuário logado cadastrar um novo cliente no sistema.
       security:
         - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: Nome do Cliente
+                  example: Maria Souza
+                email:
+                  type: string
+                  description: Email do Cliente
+                  example: maria@email.com
+                cpf:
+                  type: string
+                  description: CPF do Cliente
+                  example: 15894673210
+                cep:
+                  type: string
+                  description: CEP do Cliente
+                  example: 04532011
+                rua:
+                  type: string
+                  description: Rua Casa do Cliente
+                  example: Rua das Flores
+                numero:
+                  type: string
+                  description: Numero Casa do Cliente
+                  example: 104
+                bairro:
+                  type: string
+                  description: Bairro Casa do Cliente
+                  example: Jardim Paulista
+                cidade:
+                  type: string
+                  description: Cidade do Cliente
+                  example: São Paulo
+                estado:
+                  type: string
+                  description: Estado do Cliente
+                  example: SP
+              required:
+                - nome
+                - email
+                - cpf
+                - cep
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Internal Server Error
     get:
       tags: 
         - Cliente
       summary: Listar Clientes
       description: >
-       Essa é a rota que será chamada quando o usuário logado quiser listar todos os clientes cadastrados.
+        Essa é a rota que será chamada quando o usuário logado quiser listar todos os clientes cadastrados.
       security:
         - bearerAuth: []
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1
+                  nome:
+                    type: string
+                    example: Maria Souza
+                  email:
+                    type: string
+                    example: maria@email.com
+                  cpf:
+                    type: string
+                    example: 15894673210
+                  cep:
+                    type: string
+                    example: 04532011
+                  rua:
+                    type: string
+                    example: Rua das Flores
+                  numero:
+                    type: string
+                    example: 104
+                  bairro:
+                    type: string
+                    example: Jardim Paulista
+                  cidade:
+                    type: string
+                    example: São Paulo
+                  estado:
+                    type: string
+                    example: SP
+        '500':
+          description: Internal Server Error
   /cliente/{id}:
     get:
       tags: 
         - Cliente
       summary: Detalhar Cliente
       description: >
-         Essa é a rota que será chamada quando o usuário logado quiser obter um de seus clientes cadastrados.
+        Essa é a rota que será chamada quando o usuário logado quiser obter um de seus clientes cadastrados.
       security:
         - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do cliente que deve ser retornado
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1
+                  nome:
+                    type: string
+                    example: Maria Souza
+                  email:
+                    type: string
+                    example: maria@email.com
+                  cpf:
+                    type: string
+                    example: 15894673210
+                  cep:
+                    type: string
+                    example: 04532011
+                  rua:
+                    type: string
+                    example: Rua das Flores
+                  numero:
+                    type: string
+                    example: 104
+                  bairro:
+                    type: string
+                    example: Jardim Paulista
+                  cidade:
+                    type: string
+                    example: São Paulo
+                  estado:
+                    type: string
+                    example: SP
+        '500':
+          description: Internal Server Error
     put:
       tags: 
         - Cliente
       summary: Atualizar Cliente
       description: >
-         Essa é a rota que permite o usuário realizar atualização de um cliente cadastrado.
+        Essa é a rota que permite o usuário realizar atualização de um cliente cadastrado.
       security:
         - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do cliente que deve ser atualizado.
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  description: Nome do Cliente
+                  example: Maria Souza
+                email:
+                  type: string
+                  description: Email do Cliente
+                  example: maria@email.com
+                cpf:
+                  type: string
+                  description: CPF do Cliente
+                  example: 15894673210
+                cep:
+                  type: string
+                  description: CEP do Cliente
+                  example: 04532011
+                rua:
+                  type: string
+                  description: Rua Casa do Cliente
+                  example: Rua das Flores
+                numero:
+                  type: string
+                  description: Numero Casa do Cliente
+                  example: 104
+                bairro:
+                  type: string
+                  description: Bairro Casa do Cliente
+                  example: Jardim Paulista
+                cidade:
+                  type: string
+                  description: Cidade do Cliente
+                  example: São Paulo
+                estado:
+                  type: string
+                  description: Estado do Cliente
+                  example: SP
+              required:
+                - nome
+                - email
+                - cpf
+                - cep
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Internal Server Error
   /pedido:
     post:
       tags: 
@@ -225,24 +667,119 @@ paths:
         Essa é a rota que será utilizada para cadastrar um novo pedido no sistema.
       security:
         - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cliente_id:
+                  type: integer
+                  description: ID do cliente.
+                  example: 1
+                observacao:
+                  type: string
+                  description: Observação para o pedido.
+                  example: Em caso de ausência recomendo deixar com algum vizinho
+                pedido_produtos:
+                  type: array
+                  description: Valor do produto.
+                  items:
+                    type: object
+                    properties:
+                      produto_id:
+                        type: integer
+                        description: ID do produto.
+                        example: "1"
+                      quantidade_produto:
+                        type: integer
+                        description: Quantidade do produto.
+                        example: "10"
+                  example:
+                    - produto_id: 1
+                      quantidade_produto: "10"
+                    - produto_id: 2
+                      quantidade_produto: "5"
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  cliente_id:
+                    type: integer
+                    example: 1
+                  observacao:
+                    type: string
+                    example: Em caso de ausência recomendo deixar com algum vizinho
+                  valor_total:
+                    type: integer
+                    example: 4012500
+        '500':
+          description: Internal Server Error
     get:
       tags: 
         - Pedido
       summary: Listar Pedidos
-      description: >
-       Essa é a rota que será chamada quando o usuário logado quiser listar todos os pedidos cadastrados.
-      security:
-        - bearerAuth: []
-  /pedido/{id}:
-    get:
-      tags: 
-        - Pedido
-      summary: Listar Pedidos Cliente
-      description: >
-       Essa é a rota que será chamada quando o usuário logado quiser listar todos os pedidos de um cliente específico.
-      security:
-        - bearerAuth: []
+      description: |
+        Essa é a rota que será chamada quando o usuário logado quiser listar todos os pedidos cadastrados.
 
+        Caso seja informado o parâmetro do tipo query `cliente__id`será listado apenas os pedidos do cliente específico.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cliente__id
+          in: query
+          description: ID do cliente que deve ser retornado
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 1
+                  nome:
+                    type: string
+                    example: Maria Souza
+                  email:
+                    type: string
+                    example: maria@email.com
+                  cpf:
+                    type: string
+                    example: 15894673210
+                  cep:
+                    type: string
+                    example: 04532011
+                  rua:
+                    type: string
+                    example: Rua das Flores
+                  numero:
+                    type: string
+                    example: 104
+                  bairro:
+                    type: string
+                    example: Jardim Paulista
+                  cidade:
+                    type: string
+                    example: São Paulo
+                  estado:
+                    type: string
+                    example: SP
+        '500':
+          description: Internal Server Error
 
 
 

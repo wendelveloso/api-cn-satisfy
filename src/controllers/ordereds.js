@@ -95,6 +95,7 @@ const cadastrarPedido = async (req, res) => {
 };
 
 const listarPedidos = async (req, res) => {
+  const { cliente__id } = req.query;
   try {
     let pedidosFinal = [];
     const pedidosResultados = await knex("pedidos").select("*");
@@ -121,9 +122,8 @@ const listarPedidos = async (req, res) => {
         pedido_produtos: produtosSemEspacos,
       });
     }
-
-    if (req.params.id) {
-      const clienteId = parseInt(req.params.id, 10);
+    if (cliente__id) {
+      const clienteId = parseInt(cliente__id, 10);
       pedidosFinal = pedidosFinal.filter(
         (pedido) => pedido.pedido.cliente_id === clienteId
       );
@@ -178,6 +178,7 @@ const listarPedidosId = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ mensagem: "Erro interno do servidor." });
-  }
-};
-module.exports = { listarPedidos, listarPedidosId, cadastrarPedido };
+  } 
+}; 
+
+module.exports = { listarPedidos, listarPedidosId, cadastrarPedido }; 

@@ -36,6 +36,7 @@ const cadastrarProduto = async (req, res) => {
         })
         .where({ id: produto[0].id })
         .returning("*");
+        
 
       return res.status(201).json(produtoComImagem);
     }
@@ -235,4 +236,4 @@ module.exports = {
   detalharProduto,
   editarProduto,
   deletarProduto,
-};
+};  

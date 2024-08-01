@@ -11,7 +11,12 @@ const swaggerOptions = {
     servers: [
       {
         url: 'https://api-cn-satisfy.onrender.com',
+        description: 'Servidor de Produção'
       },
+      // {
+      //   url: 'http://localhost:3000',
+      //   description: 'Servidor Local'
+      // },
     ],
   },
   apis: ['./swaggerDocs.yaml'],

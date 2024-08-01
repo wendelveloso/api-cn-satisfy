@@ -21,7 +21,7 @@ const uploadDeArquivo = async (path, buffer, mimetype) => {
     .promise();
 
   return {
-    url: `https://${process.env.BACKBLAZE_BUCKET}.${process.env.ENDPOINT_S3}${arquivo.Location}`,
+    url: arquivo.Location,
     path: arquivo.Key,
   };
 };

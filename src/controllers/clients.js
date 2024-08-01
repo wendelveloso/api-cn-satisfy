@@ -33,7 +33,7 @@ const cadastrarCliente = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       mensagem: "Erro interno do sevidor.",
-    });
+    }); 
   }
 };
 
@@ -58,7 +58,7 @@ const atualizarCliente = async (req, res) => {
     }
 
     const existeCPF = await knex("clientes").where({ cpf }).first();
-    if (existeCPF) {
+    if (existeCPF && existeCPF.id != id) {
       return res.status(400).json({
         mensagem: "O CPF informado já existe.",
       });
@@ -124,4 +124,4 @@ module.exports = {
   atualizarCliente,
   listaClientes,
   detalharCliente,
-};
+};  
