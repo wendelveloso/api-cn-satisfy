@@ -6,7 +6,8 @@ const swaggerOptions = {
     info: {
       title: 'Cliente&Negócio Satisfy',
       version: '1.0.0', 
-      description: 'API RESTful de um Sistema PDV\nRepositório - https://github.com/wendelveloso/api-cn-satisfy'
+      description: `API RESTful de um Sistema PDV\n
+      Repositório - https://github.com/wendelveloso/api-cn-satisfy`
       ,
     },
     servers: [
