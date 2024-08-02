@@ -8,7 +8,7 @@ paths:
         Essa é a rota que será chamada quando o usuário quiser listar todas as categorias cadastradas.
       responses:
         '200':
-          description: Ok
+          description: OK
           content:
             application/json:
               schema:
@@ -33,7 +33,7 @@ paths:
         Essa é a rota que permite o usuário cadastrado realizar o login no sistema. 
       responses:
         '200':
-          description: Ok
+          description: OK
       requestBody:
         required: true
         content:
@@ -102,7 +102,7 @@ paths:
         - bearerAuth: []
       responses:
         '200':
-          description: Ok
+          description: OK
           content:
             application/json:
               schema:
@@ -239,7 +239,7 @@ paths:
             example: 1
       responses:
         '200':
-          description: Ok
+          description: OK
           content:
             application/json:
               schema:
@@ -352,7 +352,7 @@ paths:
                   description: Arquivo de imagem do produto.
       responses:
         '200':
-          description: Ok
+          description: OK
           content:
             application/json:
               schema:
@@ -396,7 +396,7 @@ paths:
             example: 1
       responses:
         '200':
-          description: Ok
+          description: OK
           content:
             application/json:
               schema:
@@ -494,7 +494,7 @@ paths:
         - bearerAuth: []
       responses:
         '200':
-          description: Ok
+          description: OK
           content:
             application/json:
               schema:
@@ -551,7 +551,7 @@ paths:
             example: 1
       responses:
         '200':
-          description: Ok
+          description: OK
           content:
             application/json:
               schema:
@@ -703,7 +703,7 @@ paths:
                       quantidade_produto: "5"
       responses:
         '200':
-          description: Ok
+          description: OK
           content:
             application/json:
               schema:
@@ -742,7 +742,7 @@ paths:
             example: 1
       responses:
         '200':
-          description: Ok
+          description: OK
           content:
             application/json:
               schema:
