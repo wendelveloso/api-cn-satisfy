@@ -163,7 +163,7 @@ http://localhost:3000/pedido
 ## _Middlewares_
 - authentication<br>
   _Middleware responsável em validar o token de autenticação do usuário logado, através do JWT token enviado no header da requisição, caso algo de errado aconteça, um erro 401 aparecerá, indicando usuário não autenticado._
-- validatRequest<br>
+- validateRequest<br>
   _Middleware responsável em validar os dados da requisição antes que eles sejam processados pela aplicação, Se a validação falhar, ele retorna um erro 400 com a mensagem. Se a validação for bem-sucedida, ele chama next() para continuar para o próximo middleware ou rota._
 
 

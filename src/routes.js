@@ -12,7 +12,7 @@ const {
 } = require("./controllers/clients");
 const { cadastrarPedido } = require("./controllers/ordereds");
 
-const validarRequisicao = require("./middlewares/validatRequest");
+const validarRequisicao = require("./middlewares/validateRequest");
 const usuarioAutenticado = require("./middlewares/authentication");
 const multer = require("./configs/multer");
 const { listarPedidos, listarPedidosId } = require("./controllers/ordereds");
